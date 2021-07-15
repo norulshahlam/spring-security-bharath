@@ -15,17 +15,17 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		InMemoryUserDetailsManager userDetailsService = new InMemoryUserDetailsManager();
 		UserDetails user = User.withUsername("tom").password(passwordEncoder.encode("cruise")).authorities("read").build();
 		userDetailsService.createUser(user);
-
+		
 		auth.userDetailsService(userDetailsService);
 	}
-
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// u can use other forms of login ie using forms
@@ -35,4 +35,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().anyRequest().authenticated();
 	}
 
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }
