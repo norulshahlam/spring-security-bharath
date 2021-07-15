@@ -7,10 +7,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
-
 
 	@Autowired
 	private MyAuthenticationProvider authenticationProvider;
@@ -20,14 +20,16 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(authenticationProvider);
 	}
 
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// u can use other forms of login ie using forms
-		http.formLogin();
+		http.httpBasic();
 		// how u 1 2 handle the authorisation?
-		// here we authorize all requests
-		http.authorizeRequests().antMatchers("/hello").authenticated().anyRequest().denyAll();
+		// here we authorize all requests / deny all / some
+		http.authorizeRequests().antMatchers("/hello").authenticated();
+
+		//using the custom filter
+		http.addFilterBefore(new MySecurityFilter(), BasicAuthenticationFilter.class);
 	}
 
 	@Bean
