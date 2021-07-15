@@ -1,3 +1,7 @@
+v2
+  - custom auth provider
+  - in MyAuthenticationProvider.java
+
 this is v1
   - use beans for bcrypt
 
