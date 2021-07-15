@@ -1,3 +1,11 @@
+v4 - https://cognizant.udemy.com/course/spring-security-fundamentals/learn/lecture/23113356#content
+
+  - custom filter - MySecurityFilter.java
+  - we print out before and after filter
+  - A filter is an object that performs filtering tasks on either the request to a resource (a servlet or static content), or on the response from a resource, or both.
+  - use this filter in securityConfig.java,
+  - also set to use for which auth type eg auth, cors, csrf
+
 v3 - https://cognizant.udemy.com/course/spring-security-fundamentals/learn/lecture/23041560#content
 
   - antMatchers: set some url to authenticate
