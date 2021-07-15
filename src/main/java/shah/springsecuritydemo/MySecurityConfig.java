@@ -23,9 +23,11 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		InMemoryUserDetailsManager userDetailsService = new InMemoryUserDetailsManager();
 		UserDetails user = User.withUsername("tom").password(passwordEncoder.encode("cruise")).authorities("read").build();
 		userDetailsService.createUser(user);
-		
-		auth.userDetailsService(userDetailsService);
+
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 	}
+
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// u can use other forms of login ie using forms
