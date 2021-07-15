@@ -1,3 +1,10 @@
+v3 - https://cognizant.udemy.com/course/spring-security-fundamentals/learn/lecture/23041560#content
+
+  - antMatchers: set some url to authenticate
+  - now http://localhost:8080/hello need to authentivate
+  - not http://localhost:8080/bye
+
+
 v2
   - custom auth provider
   - in MyAuthenticationProvider.java

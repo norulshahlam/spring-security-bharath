@@ -27,7 +27,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin();
 		// how u 1 2 handle the authorisation?
 		// here we authorize all requests
-		http.authorizeRequests().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/hello").authenticated().anyRequest().denyAll();
 	}
 
 	@Bean
